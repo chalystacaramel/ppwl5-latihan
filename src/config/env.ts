@@ -6,15 +6,15 @@
    3. tambahkan property DB_FILE berisi process.env.DB_FILE ke dalam `const env = {...}`
    4. cek kondisi if (!process.env.DB_FILE) console.warn("⚠ DB_FILE not set, using default database.sqlite");
 ========================= */
+
 export const env = {
-    DB_FILE: process.env.DB_FILE || "database.sqlite",
-    PORT: process.env.PORT || 3000,
-    NODE_ENV: process.env.NODE_ENV || "development",
+  PORT: Number(process.env.PORT) || 3000,
+  NODE_ENV: process.env.NODE_ENV || "development",
+  DB_FILE: process.env.DB_FILE || "database.sqlite"
 };
 
-if (!process.env.DB_FILE) console.warn("⚠ DB_FILE not set, using default database.sqlite");
+if (!process.env.DB_FILE) {
+  console.warn("⚠ DB_FILE not set, using default database.sqlite");
+}
 
-const PORT = Number(process.env.PORT) || 3000;
-const NODE_ENV = process.env.NODE_ENV || "development";
-
-console.log("Running in:", NODE_ENV);
+console.log("Running in:", env.NODE_ENV);
